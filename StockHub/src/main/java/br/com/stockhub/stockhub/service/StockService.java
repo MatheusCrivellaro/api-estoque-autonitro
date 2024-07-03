@@ -3,6 +3,7 @@ package br.com.stockhub.stockhub.service;
 import br.com.stockhub.stockhub.dto.stock.ResponseStock;
 import br.com.stockhub.stockhub.dto.stock.ResponseStockInitial;
 import br.com.stockhub.stockhub.dto.stock.ResultStock;
+import br.com.stockhub.stockhub.exception.specific.GetStockException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class StockService {
         //Conferindo o codigo de resposta da requisição
         int responseCode = connection.getResponseCode();
         if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new IOException("Falha ao obter estoque: " + connection.getResponseMessage());
+            throw new GetStockException("Falha ao obter estoque: " + connection.getResponseMessage());
         }
 
         //Coletando a String do JSON de resposta
@@ -53,5 +54,4 @@ public class StockService {
                 initial.is__abp()
         );
     }
-
 }

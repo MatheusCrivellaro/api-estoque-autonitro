@@ -1,6 +1,7 @@
 package br.com.stockhub.stockhub.service;
 
 import br.com.stockhub.stockhub.dto.auth.AutonitroTokenResponse;
+import br.com.stockhub.stockhub.exception.specific.AuthException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Base64;
 
 @Service
 public class AutenticationService {
@@ -28,7 +28,6 @@ public class AutenticationService {
         //Configurando a conexão
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("Authorization", "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()));
 
         //Criando bory da requisição
         String jsonBody = "{\"usernameOrEmailAddress\":\"" + username + "\",\"password\":\"" + password + "\"}";
@@ -38,7 +37,7 @@ public class AutenticationService {
         //Conferindo o codigo de resposta da requisição
         int responseCode = connection.getResponseCode();
         if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new IOException("Falha na autenticação: " + connection.toString());
+            throw new AuthException("Falha na autenticação: " + connection);
         }
 
         //Coletando a String do JSON de resposta

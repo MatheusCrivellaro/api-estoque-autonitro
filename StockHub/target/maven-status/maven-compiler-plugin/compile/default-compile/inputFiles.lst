@@ -1,11 +1,10 @@
+C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\config\AppConfig.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\config\WebConfig.java
-C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\controller\LoginController.java
+C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\controller\HealthController.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\controller\StockController.java
-C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\controller\TestController.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\auth\AutonitroTokenResponse.java
+C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\auth\BodyRequest.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\auth\ResultAuth.java
-C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\auth\TokenDTO.java
-C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\login\Login.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\stock\Foto.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\stock\Fotos.java
 C:\Users\usuario\Desktop\stock-hub-api\StockHub\src\main\java\br\com\stockhub\stockhub\dto\stock\Opcionais.java

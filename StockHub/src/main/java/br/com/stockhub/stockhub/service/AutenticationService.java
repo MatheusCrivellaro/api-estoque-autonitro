@@ -1,52 +1,36 @@
 package br.com.stockhub.stockhub.service;
 
 import br.com.stockhub.stockhub.dto.auth.AutonitroTokenResponse;
-import br.com.stockhub.stockhub.exception.specific.AuthException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import br.com.stockhub.stockhub.dto.auth.BodyRequest;
+import br.com.stockhub.stockhub.exception.specific.GetStockException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Service
 public class AutenticationService {
 
-    private final String api_url;
+    private final WebClient.Builder webClientBuilder;
 
-    public AutenticationService() {
-        this.api_url = "http://api.autonitro.com.br/api/TokenAuth/Authenticate";
+    @Autowired
+    public AutenticationService(WebClient.Builder webClientBuilder) {
+        this.webClientBuilder = webClientBuilder;
     }
 
-    public AutonitroTokenResponse authenticate(String username, String password) throws IOException {
-
-        //Abrindo conexão com a URL
-        URL url = new URL(api_url);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        //Configurando a conexão
-        connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/json");
-
-        //Criando bory da requisição
-        String jsonBody = "{\"usernameOrEmailAddress\":\"" + username + "\",\"password\":\"" + password + "\"}";
-        connection.setDoOutput(true);
-        connection.getOutputStream().write(jsonBody.getBytes());
-
-        //Conferindo o codigo de resposta da requisição
-        int responseCode = connection.getResponseCode();
-        if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new AuthException("Falha na autenticação: " + connection);
-        }
-
-        //Coletando a String do JSON de resposta
-        String responseBody = new String(connection.getInputStream().readAllBytes());
-        connection.disconnect();
-
-        //Convertendo o JSON em um objeto Java
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson(responseBody, AutonitroTokenResponse.class);
+    public String authenticate(String username, String password) {
+        String url = "http://api.autonitro.com.br/api/TokenAuth/Authenticate";
+        var body = new BodyRequest(username, password);
+        var response = webClientBuilder.build()
+                .post()
+                .uri(url)
+                .bodyValue(body)
+                .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, clientResponse -> Mono.error(new GetStockException("Erro ao buscar Stock")))
+                .bodyToMono(AutonitroTokenResponse.class)
+                .block();
+        assert response != null;
+        return response.getResult().getAccessToken();
     }
-
 }

@@ -1,57 +1,39 @@
 package br.com.stockhub.stockhub.service;
 
-import br.com.stockhub.stockhub.dto.stock.ResponseStock;
 import br.com.stockhub.stockhub.dto.stock.ResponseStockInitial;
 import br.com.stockhub.stockhub.dto.stock.ResultStock;
 import br.com.stockhub.stockhub.exception.specific.GetStockException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Service
 public class StockService {
 
-    public ResponseStock getStock(String cnpj, String bearerToken) throws IOException {
-        //Abrindo conexão com a URL
-        URL url = new URL("http://api.autonitro.com.br/api/services/app/StoreSite/GetStoreSiteXmlByCNPJ?cnpj=" + cnpj);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    private final WebClient.Builder webClientBuilder;
+    private final Gson gson;
 
-        //Configurando a conexão
-        connection.setRequestMethod("GET");
-        connection.setRequestProperty("Accept", "application/json");
-        connection.setRequestProperty("Authorization", "Bearer " + bearerToken);
-        connection.connect();
-
-        //Conferindo o codigo de resposta da requisição
-        int responseCode = connection.getResponseCode();
-        if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new GetStockException("Falha ao obter estoque: " + connection.getResponseMessage());
-        }
-
-        //Coletando a String do JSON de resposta
-        String responseBody = new String(connection.getInputStream().readAllBytes());
-        connection.disconnect();
-
-        //Convertendo o JSON em um objeto Java
-        return responseJsonToObject(responseBody);
+    @Autowired
+    public StockService(WebClient.Builder webClientBuilder) {
+        this.webClientBuilder = webClientBuilder;
+        this.gson = new GsonBuilder().create();
     }
 
-    private ResponseStock responseJsonToObject(String json) {
-        Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy HH:mm:ss").create();
-        ResponseStockInitial initial = gson.fromJson(json, ResponseStockInitial.class);
-        ResultStock rs = gson.fromJson(initial.getResult(), ResultStock.class);
-
-        return new ResponseStock(
-                rs,
-                initial.getTargetUrl(),
-                initial.isSuccess(),
-                initial.getError(),
-                initial.isUnAuthorizedRequest(),
-                initial.is__abp()
-        );
+    public ResultStock getExternalApiData(String cnpj, String bearerToken) {
+        String url = "http://api.autonitro.com.br/api/services/app/StoreSite/GetStoreSiteXmlByCNPJ?cnpj=" + cnpj;
+        var response = webClientBuilder.build()
+                .get()
+                .uri(url)
+                .header("Authorization", "Bearer " + bearerToken)
+                .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, clientResponse -> Mono.error(new GetStockException("Erro ao buscar Stock")))
+                .bodyToMono(ResponseStockInitial.class)
+                .block();
+        assert response != null;
+        return gson.fromJson(response.getResult(), ResultStock.class);
     }
 }

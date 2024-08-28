@@ -20,5 +20,11 @@ public class VeiculoResumido {
     private String PrecoVenda;
     private Opcionais Opcionais;
     private Fotos Fotos;
+    private String UsadoNovo;
+    private String AnoModelo;
+    private String AnoFabricacao;
+    private String TipoVeiculo;
+    private String Blindado;
+    private String Destaque;
 
 }

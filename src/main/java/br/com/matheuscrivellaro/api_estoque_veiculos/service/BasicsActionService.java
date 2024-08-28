@@ -1,11 +1,7 @@
 package br.com.matheuscrivellaro.api_estoque_veiculos.service;
 
-<<<<<<< HEAD:StockHub/src/main/java/br/com/stockhub/stockhub/service/BasicsActionService.java
-import br.com.stockhub.stockhub.dto.stock.Veiculo;
-import br.com.stockhub.stockhub.dto.stock.VeiculoResumido;
-=======
+import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.Veiculo;
 import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.VeiculoResumido;
->>>>>>> origin/main:src/main/java/br/com/matheuscrivellaro/api_estoque_veiculos/service/BasicsActionService.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

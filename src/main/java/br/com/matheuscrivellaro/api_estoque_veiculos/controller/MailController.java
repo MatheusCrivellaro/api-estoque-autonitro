@@ -1,10 +1,13 @@
-package br.com.stockhub.stockhub.controller;
+package br.com.matheuscrivellaro.api_estoque_veiculos.controller;
 
 import br.com.matheuscrivellaro.api_estoque_veiculos.dto.mail.Email;
-import br.com.stockhub.stockhub.service.MailService;
+import br.com.matheuscrivellaro.api_estoque_veiculos.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/mail")

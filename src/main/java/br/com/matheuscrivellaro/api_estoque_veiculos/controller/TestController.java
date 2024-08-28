@@ -1,4 +1,4 @@
-package br.com.stockhub.stockhub.controller;
+package br.com.matheuscrivellaro.api_estoque_veiculos.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package br.com.matheuscrivellaro.api_estoque_veiculos.controller;
 
-import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.VeiculoResumido;
+import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.Veiculo;
 import br.com.matheuscrivellaro.api_estoque_veiculos.service.BasicsActionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -37,7 +37,7 @@ public class EstoqueController {
     )
     @Cacheable("carros")
     @GetMapping(value = "/{username}/{password}/{cnpj}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<VeiculoResumido>> findAll(@PathVariable String username, @PathVariable String password, @PathVariable String cnpj) {
+    public ResponseEntity<List<Veiculo>> findAllByAuth(@PathVariable String username, @PathVariable String password, @PathVariable String cnpj) {
         return ResponseEntity.ok(
                 actionService.getStock(username, password, cnpj)
         );

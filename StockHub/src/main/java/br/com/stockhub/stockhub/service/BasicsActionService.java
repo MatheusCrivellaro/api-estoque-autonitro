@@ -1,5 +1,6 @@
 package br.com.stockhub.stockhub.service;
 
+import br.com.stockhub.stockhub.dto.stock.Veiculo;
 import br.com.stockhub.stockhub.dto.stock.VeiculoResumido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,12 @@ public class BasicsActionService {
         var token = autenticationService.authenticate(username, password);
         return getStockResume(cnpj, token);
     }
+
+    @Deprecated
+    public List<Veiculo> getStockAll(String username, String password, String cnpj) {
+        var token = autenticationService.authenticate(username, password);
+        return stockService.getExternalApiData(cnpj, token).getVeiculos().getVeiculo();
+    }
     
     public List<VeiculoResumido> getStockResume(String cnpj, String bearerToken) {
         var listaVeiculos = stockService.getExternalApiData(cnpj, bearerToken).getVeiculos().getVeiculo();
@@ -36,7 +43,13 @@ public class BasicsActionService {
                         veiculo.getCarroceria(),
                         veiculo.getPrecoVenda(),
                         veiculo.getOpcionais(),
-                        veiculo.getFotos()
+                        veiculo.getFotos(),
+                        veiculo.getUsadoNovo(),
+                        veiculo.getAnoModelo(),
+                        veiculo.getAnoFabricacao(),
+                        veiculo.getTipoVeiculo(),
+                        veiculo.getBlindado(),
+                        veiculo.getDestaque()
                 )
         ).toList();
     }

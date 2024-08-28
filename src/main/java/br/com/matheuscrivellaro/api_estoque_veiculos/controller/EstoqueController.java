@@ -4,6 +4,7 @@ import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.VeiculoResumido
 import br.com.matheuscrivellaro.api_estoque_veiculos.service.BasicsActionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
@@ -19,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/estoque")
 @EnableCaching
+@Tag(name = "Estoque Controller", description = "Controller responsável pela coleta de estoque")
 public class EstoqueController {
 
     @Autowired

@@ -35,7 +35,6 @@ public class EstoqueController {
                     @ApiResponse(description = "Unauthorized", responseCode = "401")
             }
     )
-    @Cacheable("carros")
     @GetMapping(value = "/{username}/{password}/{cnpj}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Veiculo>> findAllByAuth(@PathVariable String username, @PathVariable String password, @PathVariable String cnpj) {
         return ResponseEntity.ok(

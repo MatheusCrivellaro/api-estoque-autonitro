@@ -10,13 +10,13 @@ import java.util.List;
 public class BasicsActionService {
 
     @Autowired
-    private StockService stockService;
+    private EstoqueService estoqueService;
 
     @Autowired
     private AutenticationService autenticationService;
 
     public List<Veiculo> getStock(String username, String password, String cnpj) {
         var token = autenticationService.authenticate(username, password);
-        return stockService.getExternalApiData(cnpj, token).getVeiculos().getVeiculo();
+        return estoqueService.getExternalApiData(cnpj, token).getVeiculos().getVeiculo();
     }
 }

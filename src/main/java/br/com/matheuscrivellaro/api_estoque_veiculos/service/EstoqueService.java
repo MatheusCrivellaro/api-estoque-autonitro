@@ -26,7 +26,6 @@ public class EstoqueService {
         this.gson = new GsonBuilder().create();
     }
 
-    @CachePut("veiculos")
     public ResultEstoque getExternalApiData(String cnpj, String bearerToken) {
         String url = "http://api.autonitro.com.br/api/services/app/StoreSite/GetStoreSiteXmlByCNPJ?cnpj=" + cnpj;
         var response = webClientBuilder.build()

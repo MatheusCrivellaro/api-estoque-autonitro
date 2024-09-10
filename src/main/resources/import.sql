@@ -1,0 +1,1 @@
+INSERT INTO tb_dados_empresa(nome, username, password, cnpj)VALUES('integracaoapi', 'integracaoapi@autonitro.com.br', 'Autonitro@2023', '31897305000171');

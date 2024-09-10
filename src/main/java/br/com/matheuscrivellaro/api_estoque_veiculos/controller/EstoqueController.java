@@ -41,4 +41,11 @@ public class EstoqueController {
                 actionService.getStock(username, password, cnpj)
         );
     }
+
+    @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Veiculo>> findAllByName(@PathVariable String name) {
+        return ResponseEntity.ok(
+                actionService.getStock(name)
+        );
+    }
 }

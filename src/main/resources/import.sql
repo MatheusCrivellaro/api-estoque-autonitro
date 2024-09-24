@@ -1,1 +1,3 @@
 INSERT INTO tb_dados_empresa(nome, username, password, cnpj)VALUES('integracaoapi', 'integracaoapi@autonitro.com.br', 'Autonitro@2023', '31897305000171');
+INSERT INTO tb_dados_empresa(nome, username, password, cnpj)VALUES('autotag', 'apiuser@autotagveiculos.com.br', 'Autonitro@2023', '31558280000181');
+INSERT INTO tb_dados_empresa(nome, username, password, cnpj)VALUES('startgarage', 'api.autodealer@startgarage.com.br', 'Autonitro@2023', '24967987000186');

@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.MediaType;
@@ -35,6 +36,7 @@ public class EstoqueController {
                     @ApiResponse(description = "Unauthorized", responseCode = "401")
             }
     )
+    @Cacheable(value = "estoque_cache")
     @GetMapping(value = "/{username}/{password}/{cnpj}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Veiculo>> findAllByAuth(@PathVariable String username, @PathVariable String password, @PathVariable String cnpj) {
         return ResponseEntity.ok(
@@ -42,6 +44,7 @@ public class EstoqueController {
         );
     }
 
+    @Cacheable(value = "estoque_nome_cache")
     @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Veiculo>> findAllByName(@PathVariable String name) {
         return ResponseEntity.ok(

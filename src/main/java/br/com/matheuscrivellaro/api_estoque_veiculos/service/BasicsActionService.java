@@ -24,13 +24,11 @@ public class BasicsActionService {
     @Autowired
     private DadosEmpresaRepository empresaRepository;
 
-    @CachePut("estoqueDados")
     public List<Veiculo> getStock(String username, String password, String cnpj) {
         var token = autenticationService.authenticate(username, password);
         return estoqueService.getExternalApiData(cnpj, token).getVeiculos().getVeiculo();
     }
 
-    @CachePut("estoqueNome")
     public List<Veiculo> getStock(String nome) {
         var dadosEmpresa = empresaRepository.findByNome(nome).orElseThrow(() -> new EmpresaNotFound("A empresa " + nome + " não foi encontrada"));
         var token = autenticationService.authenticate(dadosEmpresa.getUsername(), dadosEmpresa.getPassword());

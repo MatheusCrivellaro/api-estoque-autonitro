@@ -5,6 +5,7 @@ import br.com.matheuscrivellaro.api_estoque_veiculos.service.MailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,11 @@ public class MailController {
     )
     @PostMapping
     public ResponseEntity<?> sendMail(@RequestBody Email email) {
-        mailService.sendMail(email.to(), email.subject(), email.text());
+        try {
+            mailService.sendMail(email.to(), email.subject(), email.text());
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
         return ResponseEntity.ok().build();
     }
 

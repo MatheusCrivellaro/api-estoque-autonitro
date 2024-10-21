@@ -92,6 +92,11 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>3.3.4</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.11.1</version>
+		</dependency>
 
 	</dependencies>
 

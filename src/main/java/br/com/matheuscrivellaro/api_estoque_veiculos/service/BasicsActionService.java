@@ -1,15 +1,12 @@
 package br.com.matheuscrivellaro.api_estoque_veiculos.service;
 
-import br.com.matheuscrivellaro.api_estoque_veiculos.domain.DadosEmpresa;
-import br.com.matheuscrivellaro.api_estoque_veiculos.dto.dados.DadosEmpresaDTO;
-import br.com.matheuscrivellaro.api_estoque_veiculos.dto.dados.DadosEmpresaSaveDTO;
 import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.Veiculo;
 import br.com.matheuscrivellaro.api_estoque_veiculos.exception.specific.EmpresaNotFound;
 import br.com.matheuscrivellaro.api_estoque_veiculos.repository.DadosEmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -24,6 +21,9 @@ public class BasicsActionService {
     @Autowired
     private DadosEmpresaRepository empresaRepository;
 
+    @Autowired
+    private FtpService ftpService;
+
     public List<Veiculo> getStock(String username, String password, String cnpj) {
         var token = autenticationService.authenticate(username, password);
         return estoqueService.getExternalApiData(cnpj, token).getVeiculos().getVeiculo();
@@ -35,19 +35,7 @@ public class BasicsActionService {
         return estoqueService.getExternalApiData(dadosEmpresa.getCnpj(), token).getVeiculos().getVeiculo();
     }
 
-    public DadosEmpresaSaveDTO insertDadosEmpresa(DadosEmpresaDTO dados) {
-        var dadosEntity = new DadosEmpresa();
-        dadosEntity.setNome(dados.nome());
-        dadosEntity.setUsername(dados.username());
-        dadosEntity.setPassword(dados.password());
-        dadosEntity.setCnpj(dados.cnpj());
-        var newEntity = empresaRepository.save(dadosEntity);
-        return new DadosEmpresaSaveDTO(
-                newEntity.getId(),
-                newEntity.getNome(),
-                newEntity.getUsername(),
-                newEntity.getPassword(),
-                newEntity.getCnpj()
-        );
+    public String getFtp(String remoteFilePath, String server, int port, String user, String password) throws IOException {
+        return ftpService.getXml(remoteFilePath, server, port, user, password);
     }
 }

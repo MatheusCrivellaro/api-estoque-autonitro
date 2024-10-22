@@ -1,136 +1,379 @@
 package br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoqueXml;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.Data;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-
-@Data
-@XmlRootElement(name = "Veiculo")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Veiculo {
+    @JacksonXmlProperty(localName = "CodigoCliente")
     private String codigoCliente;
-    private String codigoVeiculo;
-    private String usadoNovo;
-    private String tipoVeiculo;
-    private String categoria;
-    private String marca;
-    private String modelo;
-    private String versao;
-    private String procedencia;
-    private String cilindrada;
-    private String potencia;
-    private String tipoMotor;
-    private String freio;
-    private String refrigeracao;
-    private String anoModelo;
-    private String anoFabricacao;
-    private String combustivel;
-    private String transmissao;
-    private String codigoFIPE;
-    private String cor;
-    private String segundaCor;
-    private double preco;
-    private String precoPromocional;
-    private String alienado;
-    private String comDivida;
-    private String valorParcelaDivida;
-    private String numeroParcelasDivida;
-    private String valorTotalDivida;
-    private String placa;
-    private String cidade;
-    private int kilometragem;
-    private String qtdDonos;
-    private int qtdPortas;
-    private String aceitaPermutaCarro;
-    private String aceitaPermutaOutroBem;
-    private String valorPermutaCarro;
-    private String valorPermutaOutroBem;
-    private String renavan;
-    private String chassis;
-    private String chassis2;
-    private String observacao;
-    private String possuiRastrador;
-    private String importado;
-    private String blindado;
-    private String sucata;
-    private String proprioPortadoresDeficiencia;
-    private String ipvapago;
-    private String revisadoConcessionaria;
-    private String garantiaFabrica;
-    private String licenciado;
-    private String vendidoAguardandoFaturamento;
-    private String batido;
-    private String entradaFacilitada;
-    private String airBag;
-    private String airBagMotorista;
-    private String airBagDuplo;
-    private String arCondicionado;
-    private String arQuente;
-    private String desembacadorTraseiro;
-    private String cdPlayer;
-    private String dvdPlayer;
-    private String radio;
-    private String tocaFitas;
-    private String freiosABS;
-    private String rodasLigaLeve;
-    private String travaEletrica;
-    private String vidrosEletricos;
-    private String alarme;
-    private String bancoCouro;
-    private String direcaoHidraulica;
-    private String limpadorTraseiro;
-    private String tetoSolar;
-    private String aberturaInternaPortaMalas;
-    private String airbagCortina;
-    private String airbagPassageiro;
-    private String alarmeLuzesAcesas;
-    private String bancoMotoristaAjusteAltura;
-    private String bancoTraseiroRetratil;
-    private String bancosDianteirosAquecimento;
-    private String bancosEletricos;
-    private String bluetooth;
-    private String breakLight;
-    private String capotaMaritima;
-    private String carregadorCD;
-    private String cartaoSD;
-    private String cdPlayerMP3;
-    private String computadorBordo;
-    private String controleEstabilidade;
-    private String volanteRegulagemAltura;
-    private String vidrosVerdes;
-    private String travaEletricaCentral;
-    private String tracaoQuatroPorQuatro;
-    private String controleSomVolante;
-    private String controleTracao;
-    private String direcaoEletrica;
-    private String disqueteira;
-    private String distribuicaoEletronicaFrenagem;
-    private String encostoCabecaTraseiro;
-    private String entradaAuxiliar;
-    private String entradaUSB;
-    private String faroisRegulagemInterna;
-    private String faroisNeblinaDianteiros;
-    private String faroisNeblinaTraseiros;
-    private String farolNeblina;
-    private String farolXenonio;
-    private String imobilizadorMotor;
-    private String gps;
-    private String paraChoquesCorVeiculo;
-    private String pilotoAutomatico;
-    private String portaCopos;
-    private String protetorCacamba;
-    private String quebraMato;
-    private String retrovisorFotocromico;
-    private String radioTocaFitas;
-    private String retrovisoresEletricos;
-    private String santoAntonio;
-    private String sensorChuva;
-    private String sensorEstacionamento;
-    private String sensorLuz;
-    private String suporteEstepe;
-    private List<Foto> fotos;
-    private String emDestaque;
 
-    // Getters and setters for all fields
-    // (Adicione aqui os métodos getters e setters para cada campo)
+    @JacksonXmlProperty(localName = "CodigoVeiculo")
+    private String codigoVeiculo;
+
+    @JacksonXmlProperty(localName = "UsadoNovo")
+    private String usadoNovo;
+
+    @JacksonXmlProperty(localName = "TipoVeiculo")
+    private String tipoVeiculo;
+
+    @JacksonXmlProperty(localName = "Categoria")
+    private String categoria;
+
+    @JacksonXmlProperty(localName = "Marca")
+    private String marca;
+
+    @JacksonXmlProperty(localName = "Modelo")
+    private String modelo;
+
+    @JacksonXmlProperty(localName = "Versao")
+    private String versao;
+
+    @JacksonXmlProperty(localName = "Procedencia")
+    private String procedencia;
+
+    @JacksonXmlProperty(localName = "Cilindrada")
+    private String cilindrada;
+
+    @JacksonXmlProperty(localName = "Potencia")
+    private String potencia;
+
+    @JacksonXmlProperty(localName = "TipoMotor")
+    private String tipoMotor;
+
+    @JacksonXmlProperty(localName = "Freio")
+    private String freio;
+
+    @JacksonXmlProperty(localName = "Refrigeracao")
+    private String refrigeracao;
+
+    @JacksonXmlProperty(localName = "AnoModelo")
+    private String anoModelo;
+
+    @JacksonXmlProperty(localName = "AnoFabricacao")
+    private String anoFabricacao;
+
+    @JacksonXmlProperty(localName = "Combustivel")
+    private String combustivel;
+
+    @JacksonXmlProperty(localName = "Transmissao")
+    private String transmissao;
+
+    @JacksonXmlProperty(localName = "CodigoFIPE")
+    private String codigoFIPE;
+
+    @JacksonXmlProperty(localName = "Cor")
+    private String cor;
+
+    @JacksonXmlProperty(localName = "SegundaCor")
+    private String segundaCor;
+
+    @JacksonXmlProperty(localName = "Preco")
+    private String preco;
+
+    @JacksonXmlProperty(localName = "PrecoPromocional")
+    private String precoPromocional;
+
+    @JacksonXmlProperty(localName = "Alienado")
+    private String alienado;
+
+    @JacksonXmlProperty(localName = "ComDivida")
+    private String comDivida;
+
+    @JacksonXmlProperty(localName = "ValorParcelaDivida")
+    private String valorParcelaDivida;
+
+    @JacksonXmlProperty(localName = "NumeroParcelasDivida")
+    private String numeroParcelasDivida;
+
+    @JacksonXmlProperty(localName = "ValorTotalDivida")
+    private String valorTotalDivida;
+
+    @JacksonXmlProperty(localName = "Placa")
+    private String placa;
+
+    @JacksonXmlProperty(localName = "Cidade")
+    private String cidade;
+
+    @JacksonXmlProperty(localName = "Kilometragem")
+    private String kilometragem;
+
+    @JacksonXmlProperty(localName = "QtdDonos")
+    private String qtdDonos;
+
+    @JacksonXmlProperty(localName = "QtdPortas")
+    private String qtdPortas;
+
+    @JacksonXmlProperty(localName = "AceitaPermutaCarro")
+    private String aceitaPermutaCarro;
+
+    @JacksonXmlProperty(localName = "AceitaPermutaOutroBem")
+    private String aceitaPermutaOutroBem;
+
+    @JacksonXmlProperty(localName = "ValorPermutaCarro")
+    private String valorPermutaCarro;
+
+    @JacksonXmlProperty(localName = "ValorPermutaOutroBem")
+    private String valorPermutaOutroBem;
+
+    @JacksonXmlProperty(localName = "RENAVAN")
+    private String renavan;
+
+    @JacksonXmlProperty(localName = "Chassis")
+    private String chassis;
+
+    @JacksonXmlProperty(localName = "Chassis2")
+    private String chassis2;
+
+    @JacksonXmlProperty(localName = "Observacao")
+    private String observacao;
+
+    @JacksonXmlProperty(localName = "PossuiRastrador")
+    private String possuiRastrador;
+
+    @JacksonXmlProperty(localName = "Importado")
+    private String importado;
+
+    @JacksonXmlProperty(localName = "Blindado")
+    private String blindado;
+
+    @JacksonXmlProperty(localName = "Sucata")
+    private String sucata;
+
+    @JacksonXmlProperty(localName = "ProprioPortadoresDeficiencia")
+    private String proprioPortadoresDeficiencia;
+
+    @JacksonXmlProperty(localName = "IPVAPago")
+    private String ipvapago;
+
+    @JacksonXmlProperty(localName = "RevisadoConcessionaria")
+    private String revisadoConcessionaria;
+
+    @JacksonXmlProperty(localName = "GarantiaFabrica")
+    private String garantiaFabrica;
+
+    @JacksonXmlProperty(localName = "Licenciado")
+    private String licenciado;
+
+    @JacksonXmlProperty(localName = "VendidoAguardandoFaturamento")
+    private String vendidoAguardandoFaturamento;
+
+    @JacksonXmlProperty(localName = "Batido")
+    private String batido;
+
+    @JacksonXmlProperty(localName = "EntradaFacilitada")
+    private String entradaFacilitada;
+
+    @JacksonXmlProperty(localName = "AirBag")
+    private String airBag;
+
+    @JacksonXmlProperty(localName = "AirBagMotorista")
+    private String airBagMotorista;
+
+    @JacksonXmlProperty(localName = "AirBagDuplo")
+    private String airBagDuplo;
+
+    @JacksonXmlProperty(localName = "ArCondicionado")
+    private String arCondicionado;
+
+    @JacksonXmlProperty(localName = "ArQuente")
+    private String arQuente;
+
+    @JacksonXmlProperty(localName = "DesembacadorTraseiro")
+    private String desembacadorTraseiro;
+
+    @JacksonXmlProperty(localName = "CDPlayer")
+    private String cdPlayer;
+
+    @JacksonXmlProperty(localName = "DVDPlayer")
+    private String dvdPlayer;
+
+    @JacksonXmlProperty(localName = "Radio")
+    private String radio;
+
+    @JacksonXmlProperty(localName = "TocaFitas")
+    private String tocaFitas;
+
+    @JacksonXmlProperty(localName = "FreiosABS")
+    private String freiosABS;
+
+    @JacksonXmlProperty(localName = "RodasLigaLeve")
+    private String rodasLigaLeve;
+
+    @JacksonXmlProperty(localName = "TravaEletrica")
+    private String travaEletrica;
+
+    @JacksonXmlProperty(localName = "VidrosEletricos")
+    private String vidrosEletricos;
+
+    @JacksonXmlProperty(localName = "Alarme")
+    private String alarme;
+
+    @JacksonXmlProperty(localName = "BancoCouro")
+    private String bancoCouro;
+
+    @JacksonXmlProperty(localName = "DirecaoHidraulica")
+    private String direcaoHidraulica;
+
+    @JacksonXmlProperty(localName = "LimpadorTraseiro")
+    private String limpadorTraseiro;
+
+    @JacksonXmlProperty(localName = "TetoSolar")
+    private String tetoSolar;
+
+    @JacksonXmlProperty(localName = "AberturaInternaPortaMalas")
+    private String aberturaInternaPortaMalas;
+
+    @JacksonXmlProperty(localName = "AirbagCortina")
+    private String airbagCortina;
+
+    @JacksonXmlProperty(localName = "AirbagPassageiro")
+    private String airbagPassageiro;
+
+    @JacksonXmlProperty(localName = "AlarmeLuzesAcesas")
+    private String alarmeLuzesAcesas;
+
+    @JacksonXmlProperty(localName = "BancoMotoristaAjusteAltura")
+    private String bancoMotoristaAjusteAltura;
+
+    @JacksonXmlProperty(localName = "BancoTraseiroRetratil")
+    private String bancoTraseiroRetratil;
+
+    @JacksonXmlProperty(localName = "BancosDianteirosAquecimento")
+    private String bancosDianteirosAquecimento;
+
+    @JacksonXmlProperty(localName = "BancosEletricos")
+    private String bancosEletricos;
+
+    @JacksonXmlProperty(localName = "Bluetooth")
+    private String bluetooth;
+
+    @JacksonXmlProperty(localName = "BreakLight")
+    private String breakLight;
+
+    @JacksonXmlProperty(localName = "CapotaMaritima")
+    private String capotaMaritima;
+
+    @JacksonXmlProperty(localName = "CarregadorCD")
+    private String carregadorCD;
+
+    @JacksonXmlProperty(localName = "CartaoSD")
+    private String cartaoSD;
+
+    @JacksonXmlProperty(localName = "CDPlayerMP3")
+    private String cdPlayerMP3;
+
+    @JacksonXmlProperty(localName = "ComputadorBordo")
+    private String computadorBordo;
+
+    @JacksonXmlProperty(localName = "ControleEstabilidade")
+    private String controleEstabilidade;
+
+    @JacksonXmlProperty(localName = "VolanteRegulagemAltura")
+    private String volanteRegulagemAltura;
+
+    @JacksonXmlProperty(localName = "VidrosVerdes")
+    private String vidrosVerdes;
+
+    @JacksonXmlProperty(localName = "TravaEletricaCentral")
+    private String travaEletricaCentral;
+
+    @JacksonXmlProperty(localName = "TracaoQuatroPorQuatro")
+    private String tracaoQuatroPorQuatro;
+
+    @JacksonXmlProperty(localName = "ControleSomVolante")
+    private String controleSomVolante;
+
+    @JacksonXmlProperty(localName = "ControleTracao")
+    private String controleTracao;
+
+    @JacksonXmlProperty(localName = "DirecaoEletrica")
+    private String direcaoEletrica;
+
+    @JacksonXmlProperty(localName = "Disqueteira")
+    private String disqueteira;
+
+    @JacksonXmlProperty(localName = "DistribuicaoEletronicaFrenagem")
+    private String distribuicaoEletronicaFrenagem;
+
+    @JacksonXmlProperty(localName = "EncostoCabecaTraseiro")
+    private String encostoCabecaTraseiro;
+
+    @JacksonXmlProperty(localName = "EntradaAuxiliar")
+    private String entradaAuxiliar;
+
+    @JacksonXmlProperty(localName = "EntradaUSB")
+    private String entradaUSB;
+
+    @JacksonXmlProperty(localName = "FaroisRegulagemInterna")
+    private String faroisRegulagemInterna;
+
+    @JacksonXmlProperty(localName = "FaroisNeblinaDianteiros")
+    private String faroisNeblinaDianteiros;
+
+    @JacksonXmlProperty(localName = "FaroisNeblinaTraseiros")
+    private String faroisNeblinaTraseiros;
+
+    @JacksonXmlProperty(localName = "FarolNeblina")
+    private String farolNeblina;
+
+    @JacksonXmlProperty(localName = "FarolXenonio")
+    private String farolXenonio;
+
+    @JacksonXmlProperty(localName = "ImobilizadorMotor")
+    private String imobilizadorMotor;
+
+    @JacksonXmlProperty(localName = "GPS")
+    private String gps;
+
+    @JacksonXmlProperty(localName = "ParaChoquesCorVeiculo")
+    private String paraChoquesCorVeiculo;
+
+    @JacksonXmlProperty(localName = "PilotoAutomatico")
+    private String pilotoAutomatico;
+
+    @JacksonXmlProperty(localName = "PortaCopos")
+    private String portaCopos;
+
+    @JacksonXmlProperty(localName = "ProtetorCacamba")
+    private String protetorCacamba;
+
+    @JacksonXmlProperty(localName = "QuebraMato")
+    private String quebraMato;
+
+    @JacksonXmlProperty(localName = "RetrovisorFotocromico")
+    private String retrovisorFotocromico;
+
+    @JacksonXmlProperty(localName = "RadioTocaFitas")
+    private String radioTocaFitas;
+
+    @JacksonXmlProperty(localName = "RetrovisoresEletricos")
+    private String retrovisoresEletricos;
+
+    @JacksonXmlProperty(localName = "SantoAntonio")
+    private String santoAntonio;
+
+    @JacksonXmlProperty(localName = "SensorChuva")
+    private String sensorChuva;
+
+    @JacksonXmlProperty(localName = "SensorEstacionamento")
+    private String sensorEstacionamento;
+
+    @JacksonXmlProperty(localName = "SensorLuz")
+    private String sensorLuz;
+
+    @JacksonXmlProperty(localName = "SuporteEstepe")
+    private String suporteEstepe;
+
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "Fotos")
+    private Fotos fotos;
+
+    @JacksonXmlProperty(localName = "EmDestaque")
+    private String emDestaque;
 }

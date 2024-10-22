@@ -1,11 +1,16 @@
 package br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoqueXml;
 
-import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoqueXml.Veiculo;
-import lombok.Data;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Setter
+@Getter
 public class Veiculos {
-    private List<br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.Veiculo> Veiculo;
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "Veiculo")
+    private List<Veiculo> veiculos;
 }

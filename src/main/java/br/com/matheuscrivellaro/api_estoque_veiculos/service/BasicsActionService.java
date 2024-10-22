@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -36,7 +35,7 @@ public class BasicsActionService {
         return estoqueService.getExternalApiData(dadosEmpresa.getCnpj(), token).getVeiculos().getVeiculo();
     }
 
-    public List<Veiculo> getEstoqueXml(String url) throws JsonProcessingException {
-        return xmlService.getVeiculosXml(url);
+    public List<Veiculo> getEstoqueXml(String uri) throws JsonProcessingException {
+        return xmlService.getVeiculosXml(uri);
     }
 }

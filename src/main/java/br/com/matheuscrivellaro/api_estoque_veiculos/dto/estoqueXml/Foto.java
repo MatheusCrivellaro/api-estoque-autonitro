@@ -1,10 +1,17 @@
 package br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoqueXml;
 
-import lombok.Data;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class Foto {
+    @JacksonXmlProperty(localName = "NomeArquivo")
     private String nomeArquivo;
+    @JacksonXmlProperty(localName = "URLArquivo")
     private String urlArquivo;
-    private int principal;
+    @JacksonXmlProperty(localName = "Principal")
+    private String principal;
+
 }

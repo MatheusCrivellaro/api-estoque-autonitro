@@ -30,7 +30,7 @@ public class EstoqueService {
                 .uri(url)
                 .header("Authorization", "Bearer " + bearerToken)
                 .retrieve()
-                .onStatus(HttpStatusCode::is4xxClientError, clientResponse -> Mono.error(new GetStockException("Erro ao buscar Stock")))
+                .onStatus(HttpStatusCode::is4xxClientError, clientResponse -> Mono.error(new GetStockException("Erro ao buscar Estoque")))
                 .bodyToMono(ResponseEstoqueInitial.class)
                 .block();
         assert response != null;

@@ -2,6 +2,7 @@ package br.com.matheuscrivellaro.api_estoque_veiculos.controller;
 
 import br.com.matheuscrivellaro.api_estoque_veiculos.dto.estoque.Veiculo;
 import br.com.matheuscrivellaro.api_estoque_veiculos.service.BasicsActionService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,12 +11,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -40,7 +37,7 @@ public class EstoqueController {
     @GetMapping(value = "/autonitro/{username}/{password}/{cnpj}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Veiculo>> findAllByAuth(@PathVariable String username, @PathVariable String password, @PathVariable String cnpj) {
         return ResponseEntity.ok(
-                actionService.getStock(username, password, cnpj)
+                actionService.getEstoque(username, password, cnpj)
         );
     }
 
@@ -48,15 +45,12 @@ public class EstoqueController {
     @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Veiculo>> findAllByName(@PathVariable String name) {
         return ResponseEntity.ok(
-                actionService.getStock(name)
+                actionService.getEstoque(name)
         );
     }
 
-    @Cacheable(value = "estoque_nome_cache")
-    @GetMapping(value = "/ftp/{remoteFilePath}/{server}/{port}/{user}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> findAllByFtp(@PathVariable String remoteFilePath, @PathVariable String server, @PathVariable int port, @PathVariable String user, @PathVariable String password) throws IOException {
-        return ResponseEntity.ok(
-                actionService.getFtp(remoteFilePath, server, port, user, password)
-        );
+    @GetMapping("/xml")
+    public ResponseEntity<List<Veiculo>> findAllByXml(@RequestParam String url) throws JsonProcessingException {
+        return ResponseEntity.ok(actionService.getEstoqueXml(url));
     }
 }
